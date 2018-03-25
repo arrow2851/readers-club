@@ -1,8 +1,11 @@
 package com.uttej.oraclereadersclub;
 
 import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.uttej.oraclereadersclub.Utils.BottomNavigationViewHelper;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "Home/BooksCatalogActivity";
@@ -17,6 +20,7 @@ public class HomeActivity extends AppCompatActivity {
     adding the bottom navigation view
      */
     private void setupBottomNavigationView(){
-        BottomNavigationItemView bottomNavigationItemView = (BottomNavigationItemView)findViewById(R.id.bottomNavigationBar);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavigationBar);
+        BottomNavigationViewHelper.enableNavigation(HomeActivity.this, bottomNavigationView);
     }
 }
