@@ -13,15 +13,21 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/homeActivity">
+            android:layout_height="wrap_content"
+            android:id="@+id/homeActivity"
+            android:layout_marginBottom="50dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <GridView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Home Activity"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
+                android:id="@+id/imagesGrid"
+                android:gravity="center"
+                android:numColumns="2"
+                android:stretchMode="columnWidth"
+                android:horizontalSpacing="1dp"
+                android:verticalSpacing="1dp">
+
+            </GridView>
 
         </RelativeLayout>
 
