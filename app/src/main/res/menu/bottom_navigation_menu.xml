@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/addBooks"
+        android:icon="@drawable/ic_add_books"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/booksCatalog"
+        android:icon="@drawable/ic_books_catalog"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/requests"
+        android:icon="@drawable/ic_requests"
+        android:title="">
+    </item>
+
+    <item
+        android:id="@+id/userProfile"
+        android:icon="@drawable/ic_user_profile"
+        android:title="">
+    </item>
+
+</menu>
