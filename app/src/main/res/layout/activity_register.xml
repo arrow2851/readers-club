@@ -19,7 +19,7 @@
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/loginName"
+                android:id="@+id/registerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/prompt_username"
@@ -30,14 +30,45 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/registerRollNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/prompt_rollnumber"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="8dp">
 
             <EditText
-                android:id="@+id/loginPassword"
+                android:id="@+id/registerPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
+                android:hint="Password"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/registerConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirm Password"
                 android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
@@ -46,24 +77,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:text="Login"
-            android:id="@+id/loginButton"
+            android:text="Register"
+            android:id="@+id/registerButton"
             android:padding="15dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No account yet? Create one"
-            android:gravity="center"
-            android:textSize="16dp"
-            android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
 
     <ProgressBar
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/loggingUserInProgressBar"
+        android:id="@+id/registeringUserInProgress"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
