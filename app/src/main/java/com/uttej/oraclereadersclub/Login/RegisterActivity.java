@@ -173,7 +173,7 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         firebaseMethods.addNewUser(email, rollnumber, username);
                         Toast.makeText(RegisterActivity.this, "Signup Successful. Sending verification email...", Toast.LENGTH_SHORT).show();
-                        //TODO: send verification email
+                        mAuth.signOut();
                     }
 
                     @Override
@@ -181,6 +181,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
+                finish();
             }
             else{
                 Log.d(TAG, "user signed out");
