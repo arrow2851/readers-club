@@ -1,8 +1,13 @@
 <resources>
     <string name="app_name">Oracle Reader\'s Club</string>
+
+    <!--activity field hints-->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_pwd_confirm">Confirm Password</string>
     <string name="prompt_rollnumber">Roll Number</string>
     <string name="prompt_email">Email</string>
+
+    <!--firebase database fields-->
+    <string name="dbname_user_accounts">user_accounts</string>
 </resources>

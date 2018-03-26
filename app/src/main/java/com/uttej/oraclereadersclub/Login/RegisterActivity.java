@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    String username, rollnumber, email, password, confirmpassword;
+
     private EditText mUsername;
     private EditText mRollNumber;
     private EditText mEmail;
@@ -44,6 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
 
+    private boolean userAlreadyExists = false;
+    private boolean rollnumberAlreadyExists = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,14 +79,15 @@ public class RegisterActivity extends AppCompatActivity {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String username = mUsername.getText().toString();
-                String rollnumber = mRollNumber.getText().toString();
-                String email = mEmail.getText().toString();
-                String password = mPassword.getText().toString();
-                String confirmpassword = mPasswordConfirmation.getText().toString();
+                username = mUsername.getText().toString();
+                rollnumber = mRollNumber.getText().toString();
+                email = mEmail.getText().toString();
+                password = mPassword.getText().toString();
+                confirmpassword = mPasswordConfirmation.getText().toString();
 
                 switch(validateFields(username, rollnumber, email, password, confirmpassword)){
                     case 0:
+                        Log.d(TAG, "Creating new user");
                         firebaseMethods.registerNewUser(username, rollnumber, email, password);
                         break;
                     case 1:
@@ -96,6 +102,12 @@ public class RegisterActivity extends AppCompatActivity {
                     case 4:
                         Toast.makeText(RegisterActivity.this, "Rollnumber must of format: 160215733114", Toast.LENGTH_SHORT).show();
                         break;
+//                    case 5:
+//                        Toast.makeText(RegisterActivity.this, "Username already exists. Choose a different one.", Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case 6:
+//                        Toast.makeText(RegisterActivity.this, "A user with this rollnumber already exists", Toast.LENGTH_SHORT).show();
+//                        break;
                     default:
                         break;
                 }
@@ -118,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(username.length() < 4 || username.length() > 15 )
             return 2;
 
-        if(!password.equals(confirmpassword))
+        if(!password.equals(confirmpassword) || password.length() < 6)
             return 3;
 
         if(rollnumber.length() != 12 ||
@@ -140,6 +152,7 @@ public class RegisterActivity extends AppCompatActivity {
 //    -------------------------FIREBASE--------------------------------
     private void setupFirebaseAuth(){
         mAuth = FirebaseAuth.getInstance();
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference();
 
@@ -150,17 +163,17 @@ public class RegisterActivity extends AppCompatActivity {
             FirebaseUser user = firebaseAuth.getCurrentUser();
 
             if(user != null){
+                Log.d(TAG, "user signed in");
+
                 mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        //make sure that username is unique
-
-                        //make sure that rollnumber is unique
-
-                        //make sure that email is unique
-
-                        //add user to the database
-
+                        if(firebaseMethods.checkIfUsernameExists(username, dataSnapshot)){
+                            Log.d(TAG, "The user name already exists");
+                        }
+                        firebaseMethods.addNewUser(email, rollnumber, username);
+                        Toast.makeText(RegisterActivity.this, "Signup Successful. Sending verification email...", Toast.LENGTH_SHORT).show();
+                        //TODO: send verification email
                     }
 
                     @Override
@@ -169,9 +182,12 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
             }
+            else{
+                Log.d(TAG, "user signed out");
+            }
         }
     };
-}
+    }
 
     @Override
     public void onStart(){

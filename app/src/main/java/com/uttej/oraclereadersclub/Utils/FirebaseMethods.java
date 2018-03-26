@@ -11,6 +11,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.uttej.oraclereadersclub.Models.User;
+import com.uttej.oraclereadersclub.R;
 
 /**
  * Created by Clean on 26-03-2018.
@@ -26,9 +30,15 @@ public class FirebaseMethods {
 
     private Context mContext;
 
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mDatabaseReference;
+
     public FirebaseMethods(Context context){
         mAuth = FirebaseAuth.getInstance();
         mContext = context;
+
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference();
 
         if(mAuth.getCurrentUser() != null){
             userID = mAuth.getCurrentUser().getUid();
@@ -55,13 +65,39 @@ public class FirebaseMethods {
     }
 
     public boolean checkIfUsernameExists(String username, DataSnapshot dataSnapshot){
+        Log.d(TAG, "username check " + username + " datasnapshot " + dataSnapshot);
+        User user = new User();
 
+        for(DataSnapshot ds: dataSnapshot.child(userID).getChildren()){
+            user.setUsername(ds.getValue(User.class).getUsername());
+            if(user.getUsername().equals(username)){
+                Log.d(TAG, "user already exists");
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean checkIfRollNumberExists(String username, DataSnapshot dataSnapshot){
+    public boolean checkIfRollNumberExists(String rollnumber, DataSnapshot dataSnapshot){
 
+        User user = new User();
+
+        for(DataSnapshot ds: dataSnapshot.child(userID).getChildren()){
+            user.setRollnumber(ds.getValue(User.class).getRollnumber());
+            if(user.getRollnumber().equals(rollnumber)){
+                Log.d(TAG, "roll number already exists");
+                return true;
+            }
+        }
         return false;
+    }
+
+    public void addNewUser(String email, String rollnumber, String username){
+        User user = new User(email, rollnumber, userID, username);
+
+        mDatabaseReference.child(mContext.getString(R.string.dbname_user_accounts))
+                .child(userID)
+                .setValue(user);
     }
 
 }
