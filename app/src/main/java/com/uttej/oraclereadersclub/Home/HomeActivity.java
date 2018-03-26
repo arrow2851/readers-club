@@ -5,10 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.GridView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.uttej.oraclereadersclub.AddBooks.AddBooksActivity;
+import com.uttej.oraclereadersclub.Login.LoginActivity;
 import com.uttej.oraclereadersclub.Profile.ProfileActivity;
 import com.uttej.oraclereadersclub.R;
 import com.uttej.oraclereadersclub.Requests.RequestsActivity;
@@ -17,13 +21,19 @@ import com.uttej.oraclereadersclub.Utils.GridImageAdapter;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-    private static final String TAG = "Home/BooksCatalogActivity";
+    private static final String TAG = "BooksCatalogActivity";
     private int NUM_GRID_COLUMNS = 2;
+
+    //firebase
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        setupFirebaseAuth();
 
         setupBottomNavigationView();
         tempGridInflator();
@@ -84,6 +94,43 @@ public class HomeActivity extends AppCompatActivity {
 
         GridImageAdapter adapter = new GridImageAdapter(HomeActivity.this, R.layout.layout_grid_image_view, "", imgURLs);
         gridView.setAdapter(adapter);
+    }
+
+    //----------------------------FIREBASE----------------------------------
+
+    private void setupFirebaseAuth(){
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                checkCurrentUserStatus(user);
+            }
+        };
+    }
+
+    private void checkCurrentUserStatus(FirebaseUser user){
+        if(user == null){
+            Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+        checkCurrentUserStatus(mAuth.getCurrentUser());
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        if(mAuthListener != null){
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
 
