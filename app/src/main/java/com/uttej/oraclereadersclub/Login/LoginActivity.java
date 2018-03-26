@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 finish();
                                             }
                                             else{
-                                                Toast.makeText(mContext,"Your email is not yet verified \n Check your inbox for the link.",Toast.LENGTH_LONG).show();
+                                                Toast.makeText(mContext,"Your email is not yet verified \nCheck your inbox for the link.",Toast.LENGTH_LONG).show();
                                                 mProgressBar.setVisibility(View.GONE);
                                                 mAuth.signOut();
                                             }

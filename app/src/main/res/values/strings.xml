@@ -10,4 +10,5 @@
 
     <!--firebase database fields-->
     <string name="dbname_user_accounts">user_accounts</string>
+
 </resources>

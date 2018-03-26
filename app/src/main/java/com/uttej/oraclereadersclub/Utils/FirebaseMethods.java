@@ -120,4 +120,35 @@ public class FirebaseMethods {
         }
     }
 
+    public User getUserInformation(DataSnapshot dataSnapshot){
+
+        User user = new User();
+        user.setUser_id(userID);
+        user.setEmail("");
+
+        for(DataSnapshot ds: dataSnapshot.getChildren()){
+            if(ds.getKey().equals(mContext.getString(R.string.dbname_user_accounts))){
+
+                try{
+
+                    user.setRollnumber(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getRollnumber()
+                    );
+
+                    user.setUsername(
+                            ds.child(userID)
+                                    .getValue(User.class)
+                                    .getUsername()
+                    );
+
+                }catch (NullPointerException e){
+                    Log.e(TAG, "caught exception while retrieving data: " + e.getMessage());
+                }
+            }
+        }
+        return user;
+    }
+
 }
