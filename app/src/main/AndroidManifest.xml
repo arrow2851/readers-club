@@ -26,6 +26,7 @@
         <activity android:name=".Requests.RequestsActivity" />
         <activity android:name=".Login.LoginActivity" />
         <activity android:name=".Login.RegisterActivity" />
+        <activity android:name=".AddBooks.NextActivity"/>
     </application>
 
 </manifest>

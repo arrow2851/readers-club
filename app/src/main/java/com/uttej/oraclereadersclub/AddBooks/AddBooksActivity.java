@@ -2,13 +2,19 @@ package com.uttej.oraclereadersclub.AddBooks;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.uttej.oraclereadersclub.Home.HomeActivity;
 import com.uttej.oraclereadersclub.Profile.ProfileActivity;
@@ -25,6 +31,9 @@ public class AddBooksActivity extends AppCompatActivity {
     private static final String TAG = "AddBooksActivity";
 
     private static final int VERIFY_PERMISSION_REQUEST = 1;
+    private static final int CAMERA_REQUEST_CODE = 5;
+
+    Button mLaunchCamera;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,13 +41,50 @@ public class AddBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_books);
 
         if(checkPermissionsArray(Permissions.PERMISSIONS)){
-            
+
          }
         else{
             verifyPermissions(Permissions.PERMISSIONS);
         }
-//        setupBottomNavigationView();
+
+        initLaunchCamera();
+        setupBottomNavigationView();
     }
+
+//    ------------------------CAMERA-----------------------------
+
+    public void initLaunchCamera(){
+        mLaunchCamera = (Button)findViewById(R.id.addBooksLaunchCamera);
+        mLaunchCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkPermissions(Permissions.CAMERA_PERMISSION)){
+                    Intent CameraIntent = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(CameraIntent, CAMERA_REQUEST_CODE);
+                }
+                else{
+                    Toast.makeText(AddBooksActivity.this, "Permission not granted to access camera. Please grant permission before continuing", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CAMERA_REQUEST_CODE){
+
+            Bitmap bitmap;
+            bitmap = (Bitmap) data.getExtras().get("data");
+
+            Intent intent = new Intent(AddBooksActivity.this, NextActivity.class);
+            intent.putExtra(getString(R.string.selected_bitmap), bitmap);
+            startActivity(intent);
+        }
+    }
+
+    //    --------------------------PERMISSIONS----------------------------
 
     public void verifyPermissions(String[] permissions){
         ActivityCompat.requestPermissions(
@@ -67,6 +113,8 @@ public class AddBooksActivity extends AppCompatActivity {
             return true;
         }
     }
+
+//    ------------------------------BOTTOM NAVIGATION BAR--------------------------
 
     private void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavigationBar);

@@ -10,5 +10,18 @@
 
     <!--firebase database fields-->
     <string name="dbname_user_accounts">user_accounts</string>
+    <string name="dbname_photos">photos</string>
+    <string name="dbname_user_photos">user_photos</string>
+
+    <!--next toolbar (share)-->
+    <string name="next_share">Share</string>
+
+    <!--intent extras-->
+    <string name="selected_image">selected_image</string>
+    <string name="selected_bitmap">selected_bitmap</string>
+
+    <!--photo types-->
+    <string name="new_photo">new_photo</string>
+    
 
 </resources>

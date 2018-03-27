@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
 
     FirebaseMethods firebaseMethods;
-
+    
     private TextView mSignout;
     private TextView profileUsername;
     private TextView profileRollnumber;
@@ -60,6 +60,8 @@ public class ProfileActivity extends AppCompatActivity {
     void initWidgets(){
         profileUsername = (TextView)findViewById(R.id.profileName);
         profileRollnumber = (TextView)findViewById(R.id.profileRollnumber);
+
+
 
         mSignout = (TextView) findViewById(R.id.profileSignout);
         mSignout.setOnClickListener(new View.OnClickListener() {

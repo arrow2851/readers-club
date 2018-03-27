@@ -19,9 +19,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Books Activity"
-                android:layout_centerVertical="true"
+                android:text="   1. Launch Camera\n   2. Click the book cover\n   3.Type the book name\n   4. Select the genres\n   5. Upload"
+                android:layout_above="@id/addBooksLaunchCamera"
+                android:layout_marginBottom="30dp"
+                android:textSize="16sp"
                 android:layout_centerHorizontal="true"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Launch Camera"
+                android:id="@+id/addBooksLaunchCamera"
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
 
