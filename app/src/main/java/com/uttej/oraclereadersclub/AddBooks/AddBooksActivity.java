@@ -38,6 +38,7 @@ public class AddBooksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_books);
 
         if(checkPermissionsArray(Permissions.PERMISSIONS)){
@@ -47,11 +48,18 @@ public class AddBooksActivity extends AppCompatActivity {
             verifyPermissions(Permissions.PERMISSIONS);
         }
 
+
+
         initLaunchCamera();
         setupBottomNavigationView();
     }
 
-//    ------------------------CAMERA-----------------------------
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    //    ------------------------CAMERA-----------------------------
 
     public void initLaunchCamera(){
         mLaunchCamera = (Button)findViewById(R.id.addBooksLaunchCamera);
