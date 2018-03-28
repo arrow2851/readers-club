@@ -22,6 +22,10 @@
 
     <!--photo types-->
     <string name="new_photo">new_photo</string>
-    
+
+    <!--strings for data passed from home to viewBookActivity-->
+    <string name="book_title">book_title</string>
+    <string name="book_img_url">book_img_url</string>
+    <string name="book_genres">book_genres</string>
 
 </resources>

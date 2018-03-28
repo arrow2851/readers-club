@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -98,7 +100,7 @@ public class HomeActivity extends AppCompatActivity {
                     imgURLs.add(photos.get(i).getImage_path());
                 }
 
-                setupImageGridView(imgURLs);
+                setupImageGridView(imgURLs, photos);
 
             }
 
@@ -107,13 +109,12 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     /*
         displaying images in a grid view
      */
-    private void setupImageGridView(ArrayList<String> imgURLs){
+    private void setupImageGridView(ArrayList<String> imgURLs, final ArrayList<Photo> photos){
         GridView gridView = (GridView)findViewById(R.id.imagesGrid);
 
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
@@ -122,6 +123,17 @@ public class HomeActivity extends AppCompatActivity {
 
         GridImageAdapter adapter = new GridImageAdapter(HomeActivity.this, R.layout.layout_grid_image_view, "", imgURLs);
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(HomeActivity.this, ViewBookActivity.class);
+                intent.putExtra(HomeActivity.this.getString(R.string.book_title), photos.get(position).getBook_title());
+                intent.putExtra(HomeActivity.this.getString(R.string.book_img_url), photos.get(position).getImage_path());
+                intent.putExtra(HomeActivity.this.getString(R.string.book_genres), photos.get(position).getGenres());
+                startActivity(intent);
+            }
+        });
     }
 
     //----------------------------FIREBASE----------------------------------
