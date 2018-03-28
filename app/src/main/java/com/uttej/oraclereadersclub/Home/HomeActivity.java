@@ -11,8 +11,15 @@ import android.widget.GridView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.uttej.oraclereadersclub.AddBooks.AddBooksActivity;
 import com.uttej.oraclereadersclub.Login.LoginActivity;
+import com.uttej.oraclereadersclub.Models.Photo;
 import com.uttej.oraclereadersclub.Profile.ProfileActivity;
 import com.uttej.oraclereadersclub.R;
 import com.uttej.oraclereadersclub.Requests.RequestsActivity;
@@ -36,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         setupFirebaseAuth();
 
         setupBottomNavigationView();
-        tempGridInflator();
+        populateGridView();
     }
 
     /*
@@ -72,14 +79,35 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
-    private void tempGridInflator(){
-        ArrayList<String> imgURLS = new ArrayList<>();
-        imgURLS.add("https://upload.wikimedia.org/wikipedia/commons/b/b4/JPEG_example_JPG_RIP_100.jpg");
-        imgURLS.add("http://www.personal.psu.edu/oeo5025/jpg.jpg");
-        imgURLS.add("https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg");
-        imgURLS.add("https://upload.wikimedia.org/wikipedia/commons/1/1e/Stonehenge.jpg");
+    private void populateGridView(){
+        Log.d(TAG, "populateGridView: Inside");
+        final ArrayList<Photo> photos = new ArrayList<>();
+        final ArrayList<String> imgURLs = new ArrayList<String>();
 
-        setupImageGridView(imgURLS);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference
+                .child(getString(R.string.dbname_photos));
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot
+                        .getChildren()){
+                    photos.add(ds.getValue(Photo.class));
+                }
+                for(int i = 0; i < photos.size(); i++){
+                    imgURLs.add(photos.get(i).getImage_path());
+                }
+
+                setupImageGridView(imgURLs);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     /*

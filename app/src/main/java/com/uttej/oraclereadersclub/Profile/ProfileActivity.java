@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseReference;
 
     FirebaseMethods firebaseMethods;
-    
+
     private TextView mSignout;
     private TextView profileUsername;
     private TextView profileRollnumber;
