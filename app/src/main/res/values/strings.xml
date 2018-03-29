@@ -8,10 +8,13 @@
     <string name="prompt_rollnumber">Roll Number</string>
     <string name="prompt_email">Email</string>
 
-    <!--firebase database fields-->
+    <!--firebase databases-->
     <string name="dbname_user_accounts">user_accounts</string>
     <string name="dbname_photos">photos</string>
     <string name="dbname_user_photos">user_photos</string>
+
+    <!--firebase database fields-->
+    <string name="field_book_title">book_title</string>
 
     <!--next toolbar (share)-->
     <string name="next_share">Share</string>

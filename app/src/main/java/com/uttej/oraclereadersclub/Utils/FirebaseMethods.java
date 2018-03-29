@@ -236,12 +236,13 @@ public class FirebaseMethods {
      private void addPhotoToDatabase(String caption, String url){
 
          String genres = StringManipulation.getGenres(caption);
+         String bookTitle = StringManipulation.getBookTitle(caption);
          String newPhotoKey = mDatabaseReference
                  .child(mContext.getString(R.string.dbname_user_photos))
                  .push()
                  .getKey();
          Photo photo = new Photo();
-         photo.setBook_title(caption);
+         photo.setBook_title(bookTitle);
          photo.setDate_created(getTimeStamp());
          photo.setImage_path(url);
          photo.setGenres(genres);

@@ -27,6 +27,7 @@ public class ViewBookActivity extends AppCompatActivity{
     private String bookGenres;
 
     private TextView tvBookTitle;
+    private TextView tvBookGenres;
     private ImageView ivBookCover;
     private ProgressBar bookCoverLoadingProgress;
     private ImageView ivBackArrow;
@@ -41,11 +42,13 @@ public class ViewBookActivity extends AppCompatActivity{
         bookGenres = getIntent().getStringExtra(ViewBookActivity.this.getString(R.string.book_genres));
 
         tvBookTitle = (TextView) findViewById(R.id.postBookTitle);
+        tvBookGenres = (TextView) findViewById(R.id.postBookGenres);
         ivBookCover = (ImageView) findViewById(R.id.postBookImage);
         ivBackArrow = (ImageView) findViewById(R.id.postBackArrow);
         bookCoverLoadingProgress = (ProgressBar) findViewById(R.id.postBookImageProgress);
 
         tvBookTitle.setText(bookTitle);
+        tvBookGenres.setText(bookGenres);
         UniversalmageLoader.setImage(bookImagePath, ivBookCover, bookCoverLoadingProgress, "");
 
         ivBackArrow.setOnClickListener(new View.OnClickListener() {

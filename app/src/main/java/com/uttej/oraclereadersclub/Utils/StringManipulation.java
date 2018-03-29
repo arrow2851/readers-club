@@ -28,4 +28,20 @@ public class StringManipulation {
         }
         return string;
     }
+
+    public static String getBookTitle(String string){
+        if(string.indexOf("#") > 0){
+            StringBuilder sb = new StringBuilder();
+            char[] charArray = string.toCharArray();
+            for(char c: charArray){
+                if(c == '#'){
+                    return sb.toString().toLowerCase().trim();
+                }
+                else{
+                    sb.append(c);
+                }
+            }
+        }
+        return string.toLowerCase();
+    }
 }
