@@ -12,6 +12,7 @@ public class Photo {
     private String photo_id;
     private String user_id;
     private String genres;
+    private String in_possession;
 
     public Photo(){
 
@@ -72,6 +73,14 @@ public class Photo {
 
     public void setGenres(String genres) {
         this.genres = genres;
+    }
+
+    public String getIn_possession() {
+        return in_possession;
+    }
+
+    public void setIn_possession(String in_possession) {
+        this.in_possession = in_possession;
     }
 
     @Override

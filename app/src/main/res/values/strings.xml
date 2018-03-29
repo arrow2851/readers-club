@@ -15,6 +15,10 @@
 
     <!--firebase database fields-->
     <string name="field_book_title">book_title</string>
+    <string name="field_user_name">username</string>
+    <string name="field_user_id">user_id</string>
+    <string name="field_in_possession">in_possession</string>
+    <string name="field_image_path">image_path</string>
 
     <!--next toolbar (share)-->
     <string name="next_share">Share</string>

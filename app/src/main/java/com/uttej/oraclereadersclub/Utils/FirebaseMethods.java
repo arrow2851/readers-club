@@ -248,6 +248,7 @@ public class FirebaseMethods {
          photo.setGenres(genres);
          photo.setUser_id(FirebaseAuth.getInstance().getCurrentUser().getUid());
          photo.setPhoto_id(newPhotoKey);
+         photo.setIn_possession(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
          //now insert into database
          mDatabaseReference

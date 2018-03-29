@@ -22,9 +22,9 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:layout_centerVertical="true"
-                    android:id="@+id/postUserName"
+                    android:id="@+id/postOwnerName"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/black">
     
                 </TextView>
@@ -54,28 +54,19 @@
                 android:layout_below="@id/postBookImage">
                 
                 <RelativeLayout
-                    android:layout_width="60dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:id="@+id/requestStatus"
                     android:background="@color/white">
 
-                    <ImageView
-                        android:id="@+id/bookRequestOff"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/ic_request_off"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="20dp"
-                        android:visibility="visible"/>
-
-                    <ImageView
-                        android:id="@+id/bookRequestOn"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:src="@drawable/ic_request_off"
-                        android:layout_centerInParent="true"
-                        android:layout_marginLeft="10dp"
-                        android:visibility="invisible"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:text="Request to Borrow"
+                        android:textSize="10sp"
+                        android:id="@+id/requestBookButton"/>
 
                 </RelativeLayout>
 
@@ -92,22 +83,18 @@
                     android:id="@+id/postBookTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Book Title"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
                     android:layout_marginLeft="6dp"
-                    />
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/postBookGenres"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Book Genres"
-                    android:textColor="@color/black"
-                    android:textSize="15sp"
-                    android:layout_marginLeft="6dp"
                     android:layout_below="@id/postBookTitle"
-                    />
+                    android:layout_marginLeft="6dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 
