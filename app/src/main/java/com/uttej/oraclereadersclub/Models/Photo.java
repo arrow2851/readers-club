@@ -1,5 +1,7 @@
 package com.uttej.oraclereadersclub.Models;
 
+import java.util.List;
+
 /**
  * Created by Clean on 27-03-2018.
  */
@@ -13,18 +15,21 @@ public class Photo {
     private String user_id;
     private String genres;
     private String in_possession;
+    private List<Request> requests;
 
     public Photo(){
 
     }
 
-    public Photo(String book_title, String date_created, String image_path, String photo_id, String user_id, String genres) {
+    public Photo(String book_title, String date_created, String image_path, String photo_id, String user_id, String genres, String in_possession, List<Request> requests) {
         this.book_title = book_title;
         this.date_created = date_created;
         this.image_path = image_path;
         this.photo_id = photo_id;
         this.user_id = user_id;
         this.genres = genres;
+        this.in_possession = in_possession;
+        this.requests = requests;
     }
 
     public String getBook_title() {
@@ -83,15 +88,11 @@ public class Photo {
         this.in_possession = in_possession;
     }
 
-    @Override
-    public String toString() {
-        return "Photo{" +
-                "book_title='" + book_title + '\'' +
-                ", date_created='" + date_created + '\'' +
-                ", image_path='" + image_path + '\'' +
-                ", photo_id='" + photo_id + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", genres='" + genres + '\'' +
-                '}';
+    public List<Request> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 }

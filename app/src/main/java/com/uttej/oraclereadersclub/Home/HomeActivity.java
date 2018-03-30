@@ -23,12 +23,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.uttej.oraclereadersclub.AddBooks.AddBooksActivity;
 import com.uttej.oraclereadersclub.Login.LoginActivity;
 import com.uttej.oraclereadersclub.Models.Photo;
+import com.uttej.oraclereadersclub.Models.Request;
 import com.uttej.oraclereadersclub.Profile.ProfileActivity;
 import com.uttej.oraclereadersclub.R;
 import com.uttej.oraclereadersclub.Requests.RequestsActivity;
 import com.uttej.oraclereadersclub.Utils.GridImageAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "BooksCatalogActivity";
@@ -104,9 +108,27 @@ public class HomeActivity extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds: dataSnapshot
-                        .getChildren()){
-                    photos.add(ds.getValue(Photo.class));
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+
+                    Photo photo = new Photo();
+                    Map<String, Object> objectMap = (HashMap<String, Object>)ds.getValue();
+
+                    photo.setBook_title(objectMap.get(getString(R.string.field_book_title)).toString());
+                    photo.setImage_path(objectMap.get(getString(R.string.field_image_path)).toString());
+                    photo.setPhoto_id(objectMap.get(getString(R.string.field_book_id)).toString());
+                    photo.setUser_id(objectMap.get(getString(R.string.field_user_id)).toString());
+                    photo.setGenres(objectMap.get(getString(R.string.field_genres)).toString());
+                    photo.setIn_possession(objectMap.get(getString(R.string.field_in_possession)).toString());
+
+                    List<Request> requestList = new ArrayList<Request>();
+                    for(DataSnapshot dsnapshot: ds.child(getString(R.string.field_requests)).getChildren()){
+                        Request request = new Request();
+                        request.setUser_id(dsnapshot.getValue(Request.class).getUser_id());
+                        requestList.add(request);
+                    }
+                    photo.setRequests(requestList);
+                    photos.add(photo);
+
                 }
                 for(int i = 0; i < photos.size(); i++){
                     imgURLs.add(photos.get(i).getImage_path());
@@ -140,9 +162,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 Intent intent = new Intent(HomeActivity.this, ViewBookActivity.class);
+                intent.putExtra("book_id", photos.get(position).getPhoto_id());
                 intent.putExtra(HomeActivity.this.getString(R.string.book_title), photos.get(position).getBook_title());
                 intent.putExtra(HomeActivity.this.getString(R.string.book_img_url), photos.get(position).getImage_path());
                 intent.putExtra(HomeActivity.this.getString(R.string.book_genres), photos.get(position).getGenres());
+                intent.putExtra("owner_id", photos.get(position).getUser_id());
+                intent.putExtra("in_possession_id", photos.get(position).getIn_possession());
                 startActivity(intent);
             }
         });
