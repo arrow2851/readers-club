@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 import com.uttej.oraclereadersclub.AddBooks.AddBooksActivity;
 import com.uttej.oraclereadersclub.Home.HomeActivity;
@@ -20,10 +21,15 @@ import com.uttej.oraclereadersclub.R;
 public class RequestsActivity extends AppCompatActivity {
     private static final String TAG = "RequestsActivity";
 
+    private ListView requestsListView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requests);
+
+        requestsListView = (ListView) findViewById(R.id.requestsListView);
+
 
         setupBottomNavigationView();
     }

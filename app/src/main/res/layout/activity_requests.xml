@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uttej.oraclereadersclub.Home.HomeActivity">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/requestsActivity">
+            android:id="@+id/requestsListView">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Requests Activity"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <!--The bottom navigation bar-->
-        <include layout="@layout/layout_bottom_navigation"/>
+        </ListView>
 
     </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <include layout="@layout/layout_bottom_navigation"/>
+
+</RelativeLayout>

@@ -124,6 +124,9 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra(SearchActivity.this.getString(R.string.book_title), booksList.get(position).getBook_title());
                 intent.putExtra(SearchActivity.this.getString(R.string.book_img_url), booksList.get(position).getImage_path());
                 intent.putExtra(SearchActivity.this.getString(R.string.book_genres), booksList.get(position).getGenres());
+                intent.putExtra("book_id", booksList.get(position).getPhoto_id());
+                intent.putExtra("owner_id", booksList.get(position).getUser_id());
+                intent.putExtra("in_possession_id", booksList.get(position).getIn_possession());
                 startActivity(intent);
             }
         });

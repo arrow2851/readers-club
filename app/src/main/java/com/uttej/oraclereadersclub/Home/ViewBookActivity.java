@@ -85,6 +85,8 @@ public class ViewBookActivity extends AppCompatActivity{
         ownerId         = getIntent().getStringExtra("owner_id");
         inPossessionId  = getIntent().getStringExtra("in_possession_id");
 
+        Log.d(TAG, "onCreate: IDs " + ownerId + " " + inPossessionId);
+
         //initialize firebase database reference
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
