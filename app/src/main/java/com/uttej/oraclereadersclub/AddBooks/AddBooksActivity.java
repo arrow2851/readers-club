@@ -82,6 +82,9 @@ public class AddBooksActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CAMERA_REQUEST_CODE){
+            if (resultCode == RESULT_CANCELED) {
+                return;
+            }
 
             Bitmap bitmap;
             bitmap = (Bitmap) data.getExtras().get("data");
