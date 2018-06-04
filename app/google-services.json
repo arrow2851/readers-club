@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "645210572523",
+    "firebase_url": "https://oracle-reader-s-club-f52d1.firebaseio.com",
+    "project_id": "oracle-reader-s-club-f52d1",
+    "storage_bucket": "oracle-reader-s-club-f52d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645210572523:android:b1370c5352cc31d2",
+        "android_client_info": {
+          "package_name": "com.uttej.oraclereadersclub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645210572523-ob7i4iehbnmf5juhgvlrr499lu2lfo61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaDjgiDjKi9MzC1CT7S5CVDKGY8-INFxI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

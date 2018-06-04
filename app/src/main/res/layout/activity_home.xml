@@ -5,30 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uttej.oraclereadersclub.HomeActivity">
+    tools:context="com.uttej.oraclereadersclub.Home.HomeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--A top bar to include more buttons, say (optionally)-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/topBar">
+            android:layout_height="50dp"
+            android:id="@+id/relativeSearchLayout">
 
-            <include layout="@layout/layout_top_bar"/>
+            <include layout="@layout/snippet_prompt_search"/>
 
         </RelativeLayout>
 
-        <!--A layout to swap fragments-->
         <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/feedSection"
-                android:layout_below="@+id/topBar">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/homeActivity"
+            android:layout_marginBottom="50dp"
+            android:layout_below="@+id/relativeSearchLayout"
+            tools:ignore="UnknownId">
 
-            <include layout="@layout/layout_center_viewpager"/>
+            <GridView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/imagesGrid"
+                android:gravity="center"
+                android:numColumns="3"
+                android:stretchMode="columnWidth"
+                android:horizontalSpacing="1dp"
+                android:verticalSpacing="1dp"
+                >
+
+            </GridView>
 
         </RelativeLayout>
 

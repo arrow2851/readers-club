@@ -28,5 +28,15 @@ dependencies {
 
     //Adding android design support library
     compile "com.android.support:design:26.1.0"
-
+    //Universal Image Loader
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //firebase
+    compile 'com.google.firebase:firebase-core:12.0.0'
+    //firebase authentication
+    compile 'com.google.firebase:firebase-auth:12.0.0'
+    //firebase real time database
+    compile 'com.google.firebase:firebase-database:12.0.0'
+    //firebase storage
+    compile 'com.google.firebase:firebase-storage:12.0.0'
 }
+apply plugin: 'com.google.gms.google-services'

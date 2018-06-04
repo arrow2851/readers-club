@@ -21,13 +21,13 @@ Softwares to be used
 ---------------------------------------------------------------------------
 1. Android Studio for the app
 2. sqlite to store critical user info locally
-3. Django Rest Framework for backend
+3. Firebase for the database
 
 Features to be added
 ---------------------------------------------------------------------------
-1. Registration of new users through their roll number
-2. Login functionality
-3. Accessing device camera to click and store pictures of book covers
+1. Registration of new users through their roll number - completed
+2. Login functionality - completed
+3. Accessing device camera to click and store pictures of book covers - completed
 4. Status updates of respective books
 5. A button to send requests
 6. An activity to view requests and accept specific requests

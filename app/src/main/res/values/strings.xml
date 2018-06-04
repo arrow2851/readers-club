@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">Oracle Reader\'s Club</string>
+
+    <!--activity field hints-->
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_pwd_confirm">Confirm Password</string>
+    <string name="prompt_rollnumber">Roll Number</string>
+    <string name="prompt_email">Email</string>
+
+    <!--firebase databases-->
+    <string name="dbname_user_accounts">user_accounts</string>
+    <string name="dbname_photos">photos</string>
+    <string name="dbname_user_photos">user_photos</string>
+    <string name="dbname_requests">requests</string>
+
+    <!--firebase database fields-->
+    <string name="field_book_title">book_title</string>
+    <string name="field_user_name">username</string>
+    <string name="field_user_id">user_id</string>
+    <string name="field_in_possession">in_possession</string>
+    <string name="field_image_path">image_path</string>
+    <string name="field_book_id">photo_id</string>
+    <string name="field_requests">requests</string>
+    <string name="field_genres">genres</string>
+
+    <!--next toolbar (share)-->
+    <string name="next_share">Share</string>
+
+    <!--intent extras-->
+    <string name="selected_image">selected_image</string>
+    <string name="selected_bitmap">selected_bitmap</string>
+
+    <!--photo types-->
+    <string name="new_photo">new_photo</string>
+
+    <!--strings for data passed from home to viewBookActivity-->
+    <string name="book_title">book_title</string>
+    <string name="book_img_url">book_img_url</string>
+    <string name="book_genres">book_genres</string>
+
 </resources>
